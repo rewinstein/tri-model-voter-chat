@@ -2,7 +2,7 @@
 
 A production-lean MVP that compares GPT, Gemini, and Claude answers, lets each model score all three responses, aggregates the scores, and keeps only the winning answer in the conversation context.
 
-![Demo](./public/Screenshot.png)
+![Demo](./Screenshot.png)
 
 Compare GPT vs Gemini vs Claude, then let them judge each other.
 

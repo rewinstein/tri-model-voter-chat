@@ -32,8 +32,8 @@ const requestSchema = z.object({
     .optional(),
 });
 
-function getIp(): string {
-  const headerList = headers();
+async function getIp(): Promise<string> {
+  const headerList = await headers();
   const forwarded = headerList.get("x-forwarded-for");
   if (forwarded) return forwarded.split(",")[0].trim();
   return headerList.get("x-real-ip") ?? "unknown";
@@ -61,7 +61,7 @@ function enforceMissingCandidateScores(result: JudgeResult, candidates: Candidat
 }
 
 export async function POST(req: Request) {
-  const ip = getIp();
+  const ip = await getIp();
   const { allowed, retryAfterMs } = checkRateLimit(ip);
   if (!allowed) {
     return NextResponse.json(
